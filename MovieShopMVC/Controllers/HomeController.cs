@@ -1,4 +1,6 @@
-﻿using Infrastructure.Services;
+﻿using ApplicationCore.ServiceInterfaces;
+using Infrastructure.Repositories;
+using Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
 using MovieShopMVC.Models;
 using System.Diagnostics;
@@ -7,13 +9,10 @@ namespace MovieShopMVC.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        private MovieService _movieService;
-
-        public HomeController(ILogger<HomeController> logger)
+        private IMovieService _movieService;
+        public HomeController(IMovieService movieService) // constructor dependency injection
         {
-            _movieService = new MovieService();
-            _logger = logger;
+            _movieService = movieService;
         }
 
         public IActionResult Index()
