@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace ApplicationCore.Entities
 {
     public class Movie
@@ -27,6 +22,9 @@ namespace ApplicationCore.Entities
         public string UpdatedBy { get; set; }
         public string CreatedBy { get; set; }
 
+        // Navigation property, one to many
+        public List<Trailer> Trailers { get; set; }
+        //public List<Purchase> Purchases { get; set; }
 
     }
 }
