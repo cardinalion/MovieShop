@@ -99,7 +99,7 @@ namespace Infrastructure.Data
         {
             builder.ToTable("Trailer");
             builder.HasKey(t => t.Id);
-            builder.Property(t => t.name).HasMaxLength(2048);
+            builder.Property(t => t.Name).HasMaxLength(2048);
             builder.Property(t => t.TrailerUrl).HasMaxLength(2048);
         }
 

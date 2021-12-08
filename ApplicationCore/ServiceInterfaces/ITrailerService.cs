@@ -4,6 +4,6 @@ namespace ApplicationCore.ServiceInterfaces
 {
     public interface ITrailerService
     {
-        List<TrailerModel> GetTrailersByMovieId(int movieId);
+        List<TrailerResponseModel> GetTrailersByMovieId(int movieId);
     }
 }

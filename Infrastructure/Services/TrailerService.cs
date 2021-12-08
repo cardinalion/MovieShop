@@ -12,7 +12,7 @@ namespace Infrastructure.Services
             _genreRepository = genreRepository;
         }
 
-        public List<TrailerModel> GetTrailersByMovieId(int movieId)
+        public List<TrailerResponseModel> GetTrailersByMovieId(int movieId)
         {
             throw new NotImplementedException();
         }

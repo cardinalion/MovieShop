@@ -1,10 +1,13 @@
-﻿
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace ApplicationCore.Entities
+﻿namespace ApplicationCore.Models
 {
-    public class Movie
+    public class MovieDetailsResponseModel
     {
+        public MovieDetailsResponseModel()
+        {
+            Genres = new List<GenreModel>();
+            Trailers = new List<TrailerResponseModel>();
+            Casts = new List<CastResponseModel>();
+        }
         public int Id { get; set; }
         public string? Title { get; set; }
         public string? Overview { get; set; }
@@ -19,21 +22,10 @@ namespace ApplicationCore.Entities
         public DateTime ReleaseDate { get; set; }
         public int? RunTime { get; set; }
         public decimal? Price { get; set; }
-        public DateTime? CreatedDate { get; set; }
-        public DateTime? UpdatedDate { get; set; }
-        public string? UpdatedBy { get; set; }
-        public string? CreatedBy { get; set; }
-
-        [NotMapped]
         public decimal? Rating { get; set; }
 
-        // Navigation property, one to many
-        public List<Trailer> Trailers { get; set; }
-        //public List<Purchase> Purchases { get; set; }
-        public List<MovieGenre> GenresOfMovie { get; set; }
-        public List<Review> Reviews { get; set; }
-        public List<MovieCast> Casts { get; set; }
-        public List<MovieCrew> Crews { get; set; }
-
+        public List<TrailerResponseModel> Trailers { get; set; }
+        public List<GenreModel> Genres { get; set; }
+        public List<CastResponseModel> Casts { get; set; }
     }
 }

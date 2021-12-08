@@ -1,0 +1,141 @@
+﻿@model ApplicationCore.Models.MovieDetailsResponseModel
+@{
+    ViewData["Title"] = "Movie Details";
+}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    #intro-container {
+      background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
+        url("https://image.tmdb.org/t/p/original//s3TBrRGB1iav7gFOCNx3H31MoES.jpg");
+    }
+
+    #review-buy-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    #review-button, #buy-button {
+      border: 1px solid;
+      border-radius: 5px;
+      text-align: center;
+      margin: 5% 0 5% auto;
+      width: 70%;
+    }
+
+    #review-button {
+      color: white;
+    }
+
+    #buy-button {
+      background-color: white;
+    }
+
+    #cast-container {
+      margin-left: 5%;
+    }
+
+    #cast-container img {
+      border-radius: 50%;
+      padding: 0;
+    }
+
+    #cast-container .col-7 {
+      padding-left: 10%;
+    }
+
+    #detail-container {
+      font-size: 14px;
+    }
+
+    #detail-container h4 {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+      padding: 4% 0 2% 0;
+    }
+
+    .list-group-flush {
+      padding-left: 0;
+    }
+
+    .list-group-item {
+      background: none;
+    }
+
+  </style>
+</head>
+<body>
+<div class="container-fluid">
+  <div id="intro-container" class="row">
+    <div class="col-4" style="text-align: center">
+      <img src="@Model.PosterUrl" style="max-width: 50%"/>
+    </div>
+    <div class="col-5">
+      <h1 style="color: white">@Model.Title</h1>
+      <div id="tagline" style="color: darkgrey">@Model.Tagline</div>
+      <div>
+        <span style="color: darkgrey">@Model.RunTime m | @Model.ReleaseDate.Year</span>
+        <span id="genre-container">
+            @foreach(var genre in @Model.Genres)
+            {
+                <span class="badge bg-secondary">@genre.Name</span>
+            }
+        </span>
+      </div>
+      <div class="badge bg-success">@Math.Round(@Model.Rating.GetValueOrDefault(0), 2)</div>
+      <div id="overview" style="color: white; font-size: 15px">@Model.Overview</div>
+    </div>
+    <div class-moz-text-size-adjust-3" id="review-buy-container">
+      <div id="review-button" class="button">REVIEW</div>
+      <div id="buy-button" class="button">@String.Format("BUY {0:C}", @Model.Price)</div>
+    </div>
+  </div>
+  <div id="detail-container" class="row">
+    <div id="movie-fact-container" class="col-4" style="background-color: #eeeeee">
+      <h4>MOVIE FACTS</h4>
+      <ul class="list-group-flush">
+        <li class="list-group-item">
+          Release Date
+          <span class="badge bg-dark">@Model.ReleaseDate.ToString("dd-MM-yyyy")</span>
+        </li>
+        <li class="list-group-item">
+          Run Time
+          <span class="badge bg-dark">@Model.RunTime m</span>
+        </li>
+        <li class="list-group-item">
+          Box Office
+          <span class="badge bg-dark">@String.Format("{0:C}", @Model.Revenue)</span>
+        </li>
+        <li class="list-group-item">
+          Budget
+          <span class="badge bg-dark">@String.Format("{0:C}", @Model.Budget)</span>
+        </li>
+      </ul>
+      <h4>Trailers</h4>
+        @foreach(var trailer in @Model.Trailers)
+        {
+            <div>
+                <a href="@trailer.TrailerUrl">@trailer.Name</a>
+            </div>
+        }
+    </div>
+    <div id="cast-container" class="col-6">
+      <h4>CAST</h4>
+      <ul class="list-group-flush">
+        @foreach(var cast in @Model.Casts)
+        {
+          <li class="list-group-item row">
+              <div class="row">
+                <img src="@cast.ProfilePath" class="col-1"/>
+                <div class="col-7">@cast.Name</div>
+                <div class="col-4">@cast.Character</div>
+              </div>
+            </li>
+        }
+      </ul>
+    </div>
+  </div>
+</div>
+</body>
+</html>

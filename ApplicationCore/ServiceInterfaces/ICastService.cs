@@ -4,6 +4,6 @@ namespace ApplicationCore.ServiceInterfaces
 {
     public interface ICastService
     {
-        List<CastModel> GetCastsByMovieId(int movieId);
+        List<CastResponseModel> GetCastsByMovieId(int movieId);
     }
 }
