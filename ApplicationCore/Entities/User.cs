@@ -11,7 +11,7 @@ namespace ApplicationCore.Entities
         public string FirstName { get; set; }
         [MaxLength(128)]
         public string LastName { get; set; }
-        public DateTime DateOfBirth { get; set; }
+        public DateTime? DateOfBirth { get; set; }
         [MaxLength(256)]
         public string Email { get; set; }
         [MaxLength(1024)]
@@ -19,7 +19,7 @@ namespace ApplicationCore.Entities
         [MaxLength(1024)]
         public string Salt { get; set; }
         [MaxLength(16)]
-        public string PhoneNumber { get; set; }
+        public string? PhoneNumber { get; set; }
         public bool? TwoFactorEnabled { get; set; }
         public DateTime? LockoutEndDate { get; set; }
         public DateTime? LastLoginDateTime { get; set; }
@@ -28,6 +28,7 @@ namespace ApplicationCore.Entities
         public string? ProfilePictureUrl { get; set; }
 
         public List<Purchase> Purchases { get; set; }
+        public List<Favorite> Favorites { get; set; }
 
     }
 }

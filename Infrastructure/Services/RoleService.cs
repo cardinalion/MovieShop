@@ -12,9 +12,9 @@ namespace Infrastructure.Services
             _genreRepository = genreRepository;
         }
 
-        public List<RoleModel> GetAllRoles()
+        public async Task<List<RoleModel>> GetAllRoles()
         {
-            var roles = _genreRepository.GetAll();
+            var roles = await _genreRepository.GetAll();
             var roleModel = new List<RoleModel>();
             foreach (var role in roles)
             {

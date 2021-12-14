@@ -9,25 +9,30 @@ namespace MovieShopMVC.Controllers
 {
     public class HomeController : Controller
     {
-        private IMovieService _movieService;
-        public HomeController(IMovieService movieService) // constructor dependency injection
+        private readonly IMovieService _movieService;
+        private readonly IGenreService _genreService;
+        public HomeController(IMovieService movieService, IGenreService genreService)
         {
             _movieService = movieService;
+            _genreService = genreService;
+
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             // THREE ways to pass data/model from Controller Action to View
             // 1. pass the models in View method
             // 2. viewbag
             // 3. viewdata
-            var movieCards = _movieService.GetHighestGrossingMovies();
+            var movieCards = await _movieService.GetHighestGrossingMovies();
             return View(movieCards);
         }
 
         public IActionResult Privacy()
         {
-            return View();
+            //test
+            var genres = _genreService.GetAllGenres();
+            return View(genres);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

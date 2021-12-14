@@ -1,6 +1,7 @@
 ﻿using ApplicationCore.Entities;
 using ApplicationCore.RepositoryInterfaces;
 using Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories
 {
@@ -9,6 +10,12 @@ namespace Infrastructure.Repositories
         public UserRepository(MovieShopDbContext dbContext) : base(dbContext)
         {
 
+        }
+
+        public async Task<User> GetUserByEmail(string email)
+        {
+            var user = await _dbContext.Users.FirstOrDefaultAsync(x => x.Email == email);
+            return user;
         }
     }
 }

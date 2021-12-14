@@ -4,6 +4,6 @@ namespace ApplicationCore.ServiceInterfaces
 {
     public interface IRoleService
     {
-        List<RoleModel> GetAllRoles();
+        Task<List<RoleModel>> GetAllRoles();
     }
 }
